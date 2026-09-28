@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Syukri | Marketing & Communications Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                            950: '#052e16',
+                        },
+                        sand: {
+                            50: '#faf9f6',
+                            100: '#f3f2ee',
+                            200: '#e5e3dc',
+                            300: '#d5d2c7',
+                            400: '#a8a495',
+                            500: '#787568',
+                            600: '#58554b',
+                            700: '#403e37',
+                            800: '#2a2924',
+                            900: '#1c1b18',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-accent: #059669;
+            --accent-soft: rgba(5, 150, 105, 0.08);
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .border-subtle {
+            border-color: rgba(229, 227, 220, 0.9);
+        }
+        .dark .border-subtle {
+            border-color: rgba(42, 41, 36, 0.9);
+        }
+
+        .bg-accent {
+            background-color: var(--primary-accent);
+        }
+
+        .text-accent {
+            color: var(--primary-accent);
+        }
+
+        .border-accent {
+            border-color: var(--primary-accent);
+        }
+
+        .minimal-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e3dc;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .dark .minimal-card {
+            background-color: #1c1b18;
+            border: 1px solid #2a2924;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+        }
+
+        .minimal-card:hover {
+            border-color: var(--primary-accent);
+            transform: translateY(-2px);
+        }
+
+        #toast {
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+        }
+
+        /* Custom minimal scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d5d2c7;
+            border-radius: 9999px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #403e37;
+        }
+    </style>
+</head>
+<body class="bg-[#faf9f6] dark:bg-[#121110] text-sand-900 dark:text-sand-50 min-h-screen transition-colors duration-200 relative">
+
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-40 bg-[#faf9f6]/90 dark:bg-[#121110]/90 backdrop-blur-md border-b border-subtle transition-all duration-200 py-3.5 px-4 sm:px-8">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <!-- Brand Logo / Avatar Initials -->
+            <a href="#hero" class="flex items-center gap-2.5 font-bold tracking-tight text-base group">
+                <span id="brand-avatar-mini" class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs tracking-wider shadow-sm transition-transform group-hover:scale-105">
+                    MS
+                </span>
+                <span id="nav-name" class="font-bold text-sand-900 dark:text-sand-50 text-sm sm:text-base tracking-tight">Muhammad Syukri</span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-6 text-xs font-semibold tracking-wider uppercase text-sand-600 dark:text-sand-400">
+                <a href="#about" class="hover:text-accent transition">About</a>
+                <a href="#skills" class="hover:text-accent transition">Skills</a>
+                <a href="#experience" class="hover:text-accent transition">Experience</a>
+                <a href="#projects" class="hover:text-accent transition">Projects</a>
+                <a href="#education" class="hover:text-accent transition">Education</a>
+                <a href="#contact" class="hover:text-accent transition">Contact</a>
+            </nav>
+
+            <!-- Navigation Action Buttons -->
+            <div class="flex items-center gap-2">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="p-2 rounded-lg text-sand-600 dark:text-sand-300 hover:bg-sand-200/60 dark:hover:bg-sand-800/60 transition" title="Toggle Light/Dark Theme">
+                    <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+                </button>
+
+                <!-- Live Customizer Toggle -->
+                <button id="customizer-open-btn" class="p-2 rounded-lg text-sand-600 dark:text-sand-300 hover:bg-sand-200/60 dark:hover:bg-sand-800/60 transition relative" title="Customizer Panel">
+                    <i data-lucide="sliders" class="w-4 h-4"></i>
+                </button>
+
+                <!-- Contact CTA Button -->
+                <a href="#contact" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-white bg-emerald-600 shadow-sm hover:bg-emerald-700 transition">
+                    <span>Contact Me</span>
+                </a>
+
+                <!-- Mobile Navigation Toggle -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-sand-600 dark:text-sand-300 hover:bg-sand-200/60 dark:hover:bg-sand-800/60">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden max-w-6xl mx-auto pt-3 pb-2 border-t border-subtle mt-3">
+            <div class="flex flex-col gap-1 text-sm font-medium">
+                <a href="#about" class="mobile-nav-link py-2 px-3 rounded-md hover:bg-sand-200/50 dark:hover:bg-sand-800/50">About</a>
+                <a href="#skills" class="mobile-nav-link py-2 px-3 rounded-md hover:bg-sand-200/50 dark:hover:bg-sand-800/50">Skills</a>
+                <a href="#experience" class="mobile-nav-link py-2 px-3 rounded-md hover:bg-sand-200/50 dark:hover:bg-sand-800/50">Experience</a>
+                <a href="#projects" class="mobile-nav-link py-2 px-3 rounded-md hover:bg-sand-200/50 dark:hover:bg-sand-800/50">Projects</a>
+                <a href="#education" class="mobile-nav-link py-2 px-3 rounded-md hover:bg-sand-200/50 dark:hover:bg-sand-800/50">Education</a>
+                <a href="#contact" class="mobile-nav-link py-2 px-3 rounded-md hover:bg-sand-200/50 dark:hover:bg-sand-800/50">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="min-h-screen pt-32 pb-20 px-4 sm:px-8 flex items-center justify-center">
+        <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
+            
+            <!-- Open for Experience Badge -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 mb-8 shadow-xs">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Open for Free / Pro-Bono Projects & Freelance Experience</span>
+            </div>
+
+            <!-- Profile Avatar Placeholder / Frame -->
+            <div class="relative mb-8 group">
+                <div id="avatar-frame" class="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 p-1 shadow-md">
+                    <div class="w-full h-full bg-sand-100 dark:bg-sand-800 rounded-xl flex flex-col items-center justify-center text-sand-500 dark:text-sand-400 overflow-hidden relative">
+                        <img id="display-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Muhammad Syukri" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full Name & Role -->
+            <h1 id="display-name" class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-sand-900 dark:text-sand-50 mb-3 leading-tight">
+                Muhammad Syukri Bin Mohamed Tahir
+            </h1>
+
+            <p id="display-title" class="text-base sm:text-xl font-semibold text-emerald-600 dark:text-emerald-400 mb-6 flex items-center justify-center gap-2">
+                <span>Marketing & Communications Executive</span>
+                <span class="text-sand-400">•</span>
+                <span id="display-location" class="text-sand-600 dark:text-sand-400 font-normal text-sm sm:text-base">Singapore</span>
+            </p>
+
+            <!-- Tagline -->
+            <p id="display-tagline" class="max-w-2xl text-sand-600 dark:text-sand-300 text-sm sm:text-base leading-relaxed mb-10 font-normal">
+                Passionate early-career Marketing & Communications Executive specializing in graphic design, social media content, and event photography. Open to pro-bono or entry-level opportunities to deliver impactful visual content while growing my portfolio.
+            </p>
+
+            <!-- Call-to-action Action Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mb-12">
+                <a href="#contact" class="px-6 py-3 rounded-lg font-semibold text-xs uppercase tracking-wider text-white bg-emerald-600 shadow-sm hover:bg-emerald-700 transition flex items-center gap-2">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                    <span>Get in Touch</span>
+                </a>
+                <a href="#projects" class="px-6 py-3 rounded-lg font-semibold text-xs uppercase tracking-wider text-sand-800 dark:text-sand-200 bg-sand-100 dark:bg-sand-800/80 border border-subtle hover:bg-sand-200/70 dark:hover:bg-sand-800 transition flex items-center gap-2">
+                    <i data-lucide="folder-git-2" class="w-4 h-4"></i>
+                    <span>View Projects</span>
+                </a>
+                <button onclick="copyEmailToClipboard()" class="px-6 py-3 rounded-lg font-semibold text-xs uppercase tracking-wider text-sand-600 dark:text-sand-400 hover:text-sand-900 dark:hover:text-sand-100 transition flex items-center gap-2">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                    <span>Copy Email</span>
+                </button>
+            </div>
+
+            <!-- Social Links Quick Access Bar -->
+            <div class="flex items-center justify-center gap-6 pt-6 border-t border-subtle w-full max-w-md text-sand-500 dark:text-sand-400">
+                <a href="https://www.linkedin.com/in/muhammad-syukri-bin-mohamed-tahir-2b20a2255" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600 transition flex items-center gap-1.5 text-xs font-medium" title="LinkedIn Profile">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    <span class="hidden sm:inline">LinkedIn</span>
+                </a>
+                <a href="mailto:mdsykr05@gmail.com" class="hover:text-emerald-600 transition flex items-center gap-1.5 text-xs font-medium" title="Direct Email">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    <span class="hidden sm:inline">mdsykr05@gmail.com</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 px-4 sm:px-8 border-t border-subtle">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-emerald-600 block mb-2">01 / Profile</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">About & Background</h2>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-10 items-start">
+                <div class="md:col-span-7 space-y-4 text-sand-700 dark:text-sand-300 text-sm sm:text-base leading-relaxed">
+                    <p id="display-bio">
+                        A graduate in Islamic Revealed Knowledge from International Islamic University Malaysia (IIUM), I blend purposeful communication with modern graphic design and visual storytelling. While I have a strong foundation in designing and strategizing Islamic educational content, my creative capabilities extend to diverse industries and audiences.
+                    </p>
+                    <p>
+                        Driven by continuous learning and adaptability, I actively seek collaborative opportunities that produce compelling media assets, optimize Meta Ads engagement, and build meaningful community connections.
+                    </p>
+                </div>
+
+                <!-- Highlight Stats Sidebar Card -->
+                <div class="md:col-span-5 minimal-card p-6 rounded-xl space-y-4">
+                    <h3 class="font-bold text-xs tracking-wider uppercase text-sand-400 mb-2">Key Highlights</h3>
+                    
+                    <div class="flex justify-between items-center py-2.5 border-b border-subtle text-sm">
+                        <span class="text-sand-500 dark:text-sand-400">Experience</span>
+                        <span class="font-semibold text-sand-900 dark:text-sand-100">1+ Years Professional</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center py-2.5 border-b border-subtle text-sm">
+                        <span class="text-sand-500 dark:text-sand-400">Organizations Served</span>
+                        <span class="font-semibold text-sand-900 dark:text-sand-100">2 Active Mosques/NGOs</span>
+                    </div>
+
+                    <div class="flex justify-between items-center py-2.5 border-b border-subtle text-sm">
+                        <span class="text-sand-500 dark:text-sand-400">Campaign Mediums</span>
+                        <span class="font-semibold text-sand-900 dark:text-sand-100 text-right">Meta Ads, Video, Print</span>
+                    </div>
+
+                    <div class="flex justify-between items-center py-2.5 text-sm">
+                        <span class="text-sand-500 dark:text-sand-400">Education</span>
+                        <span class="font-semibold text-sand-900 dark:text-sand-100">B.A. IRK (IIUM)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 px-4 sm:px-8 border-t border-subtle bg-sand-100/50 dark:bg-sand-900/30">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-emerald-600 block mb-2">02 / Capabilities</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Technical Skills & Software Tools</h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Graphic & Visual Design -->
+                <div class="minimal-card p-6 rounded-xl">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 flex items-center justify-center mb-4">
+                        <i data-lucide="palette" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-bold text-sm uppercase tracking-wider text-sand-900 dark:text-sand-100 mb-3">Graphic Design</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300 border border-subtle">Adobe Illustrator</span>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300 border border-subtle">Adobe Photoshop</span>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300 border border-subtle">Canva Pro</span>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300 border border-subtle">Infographics</span>
+                    </div>
+                </div>
+
+                <!-- Photo & Video Editing -->
+                <div class="minimal-card p-6 rounded-xl">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 flex items-center justify-center mb-4">
+                        <i data-lucide="camera" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-bold text-sm uppercase tracking-wider text-sand-900 dark:text-sand-100 mb-3">Photo & Video</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300 border border-subtle">Adobe Lightroom</span>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300 border border-subtle">Video Editing</span>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300 border border-subtle">Event Photography</span>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300 border border-subtle">Shorts / Reels</span>
+                    </div>
+                </div>
+
+                <!-- Digital Marketing & Web -->
+                <div class="minimal-card p-6 rounded-xl">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 flex items-center justify-center mb-4">
+                        <i data-lucide="target" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-bold text-sm uppercase tracking-wider text-sand-900 dark:text-sand-100 mb-3">Marketing & Web</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300 border border-subtle">Meta Ads Manager</span>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300 border border-subtle">Social Strategy</span>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300 border border-subtle">Wix Management</span>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300 border border-subtle">Copywriting</span>
+                    </div>
+                </div>
+
+                <!-- AV & Operational -->
+                <div class="minimal-card p-6 rounded-xl">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 flex items-center justify-center mb-4">
+                        <i data-lucide="sliders-horizontal" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-bold text-sm uppercase tracking-wider text-sand-900 dark:text-sand-100 mb-3">Event Operations</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300 border border-subtle">Audio Troubleshooting</span>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300 border border-subtle">Event Coordination</span>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300 border border-subtle">Signage Systems</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-20 px-4 sm:px-8 border-t border-subtle">
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-emerald-600 block mb-2">03 / Work History</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Work Experience</h2>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Role 1: BAPA -->
+                <div class="minimal-card p-6 sm:p-8 rounded-xl">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <h3 class="font-bold text-base sm:text-lg text-sand-900 dark:text-sand-50">Marketing and Communications Executive</h3>
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                            Feb 2026 – Present
+                        </span>
+                    </div>
+                    <p class="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-4">Badan Agama dan Pelajaran Radin Mas (BAPA)</p>
+                    <ul class="space-y-2 text-xs sm:text-sm text-sand-700 dark:text-sand-300 list-disc list-inside">
+                        <li>Designed visually striking event and campaign posters across digital and print channels.</li>
+                        <li>Produced engaging short-form promotional video content to support community events and campaigns.</li>
+                        <li>Created, managed, and optimized Meta Ads campaigns to expand campaign reach and engagement.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 2: Khalid Mosque -->
+                <div class="minimal-card p-6 sm:p-8 rounded-xl">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <h3 class="font-bold text-base sm:text-lg text-sand-900 dark:text-sand-50">Marketing and Communications Officer</h3>
+                        <span class="px-3 py-1 rounded-full text-xs font-medium text-sand-500 bg-sand-100 dark:bg-sand-800 border border-subtle">
+                            Jan 2025 – Feb 2026
+                        </span>
+                    </div>
+                    <p class="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-4">Khalid Mosque</p>
+                    <ul class="space-y-2 text-xs sm:text-sm text-sand-700 dark:text-sand-300 list-disc list-inside">
+                        <li>Authored and designed informative guidance posters to effectively assist and direct congregants during large events.</li>
+                        <li>Created dynamic promotional videos to highlight major community initiatives and campaigns.</li>
+                        <li>Provided basic technical troubleshooting for event audio systems to ensure smooth operational flow.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 px-4 sm:px-8 border-t border-subtle bg-sand-100/50 dark:bg-sand-900/30">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-widest text-emerald-600 block mb-2">04 / Portfolio</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Featured Projects & Campaigns</h2>
+                </div>
+
+                <!-- Filter Navigation Bar -->
+                <div class="flex flex-wrap items-center gap-1 bg-sand-200/60 dark:bg-sand-800/60 p-1 rounded-lg border border-subtle" id="project-filters">
+                    <button data-filter="all" class="project-filter-btn px-3 py-1.5 rounded-md text-xs font-semibold transition bg-white dark:bg-sand-800 text-sand-900 dark:text-sand-50 shadow-xs">All</button>
+                    <button data-filter="meta" class="project-filter-btn px-3 py-1.5 rounded-md text-xs font-semibold text-sand-600 dark:text-sand-400 hover:text-sand-900 dark:hover:text-sand-100 transition">Meta Ads</button>
+                    <button data-filter="graphic" class="project-filter-btn px-3 py-1.5 rounded-md text-xs font-semibold text-sand-600 dark:text-sand-400 hover:text-sand-900 dark:hover:text-sand-100 transition">Graphic Design</button>
+                    <button data-filter="video" class="project-filter-btn px-3 py-1.5 rounded-md text-xs font-semibold text-sand-600 dark:text-sand-400 hover:text-sand-900 dark:hover:text-sand-100 transition">Video & Social</button>
+                </div>
+            </div>
+
+            <!-- Dynamic Project Cards Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+                <!-- Projects populated dynamically via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="py-20 px-4 sm:px-8 border-t border-subtle">
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-emerald-600 block mb-2">05 / Background</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Education</h2>
+            </div>
+
+            <div class="minimal-card p-6 sm:p-8 rounded-xl flex flex-col sm:flex-row items-start justify-between gap-4">
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <i data-lucide="graduation-cap" class="w-5 h-5 text-emerald-600"></i>
+                        <h3 class="font-bold text-base sm:text-lg">Bachelor's Degree in Islamic Revealed Knowledge</h3>
+                    </div>
+                    <p class="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-2">International Islamic University Malaysia (IIUM)</p>
+                    <p class="text-xs text-sand-600 dark:text-sand-400 leading-relaxed max-w-xl">
+                        Equipped with strong foundational research, ethics, and communications knowledge—combining purposeful messaging with modern digital media production.
+                    </p>
+                </div>
+                <span class="px-3.5 py-1 rounded-full text-xs font-semibold bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300 border border-subtle shrink-0">
+                    Graduated 2024
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 px-4 sm:px-8 border-t border-subtle bg-sand-100/50 dark:bg-sand-900/30">
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-emerald-600 block mb-2">06 / Get In Touch</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Let's Collaborate</h2>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-10">
+                <div class="md:col-span-5 space-y-6 text-sm text-sand-600 dark:text-sand-400">
+                    <p class="leading-relaxed">
+                        I am open to pro-bono or entry-level opportunities, freelance design gigs, and communications roles. Feel free to connect directly via email or LinkedIn!
+                    </p>
+                    
+                    <div class="space-y-4 pt-2">
+                        <div class="p-4 rounded-xl border border-subtle bg-white dark:bg-sand-900">
+                            <span class="text-[10px] uppercase font-bold text-sand-400 tracking-wider block mb-1">Direct Email</span>
+                            <div class="flex items-center justify-between gap-2">
+                                <a id="display-contact-email" href="mailto:mdsykr05@gmail.com" class="text-sand-900 dark:text-sand-50 font-semibold text-xs sm:text-sm hover:text-emerald-600 transition truncate">
+                                    mdsykr05@gmail.com
+                                </a>
+                                <button onclick="copyEmailToClipboard()" class="p-1.5 rounded hover:bg-sand-100 dark:hover:bg-sand-800 text-sand-500" title="Copy Email">
+                                    <i data-lucide="copy" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-subtle bg-white dark:bg-sand-900">
+                            <span class="text-[10px] uppercase font-bold text-sand-400 tracking-wider block mb-1">LinkedIn Connection</span>
+                            <a href="https://www.linkedin.com/in/muhammad-syukri-bin-mohamed-tahir-2b20a2255" target="_blank" rel="noopener noreferrer" class="text-emerald-600 font-semibold text-xs sm:text-sm hover:underline inline-flex items-center gap-1">
+                                <span>Muhammad Syukri on LinkedIn</span>
+                                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-7 minimal-card p-6 sm:p-8 rounded-xl">
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-sand-500 mb-1.5">Your Name</label>
+                                <input type="text" id="form-name" required placeholder="Ahmad Ismail" class="w-full px-3.5 py-2.5 rounded-lg text-sm bg-sand-50 dark:bg-sand-900 border border-subtle focus:outline-none focus:border-emerald-600 transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-sand-500 mb-1.5">Your Email</label>
+                                <input type="email" id="form-email" required placeholder="ahmad@example.com" class="w-full px-3.5 py-2.5 rounded-lg text-sm bg-sand-50 dark:bg-sand-900 border border-subtle focus:outline-none focus:border-emerald-600 transition">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-sand-500 mb-1.5">Subject</label>
+                            <input type="text" id="form-subject" required placeholder="Pro-Bono Project / Freelance Graphic Design" class="w-full px-3.5 py-2.5 rounded-lg text-sm bg-sand-50 dark:bg-sand-900 border border-subtle focus:outline-none focus:border-emerald-600 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-sand-500 mb-1.5">Message</label>
+                            <textarea id="form-message" rows="4" required placeholder="Let me know how I can help with your poster, video, or social media project..." class="w-full px-3.5 py-2.5 rounded-lg text-sm bg-sand-50 dark:bg-sand-900 border border-subtle focus:outline-none focus:border-emerald-600 transition resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 rounded-lg text-xs font-bold uppercase tracking-wider text-white bg-emerald-600 shadow-sm hover:bg-emerald-700 transition">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-8 border-t border-subtle text-xs text-sand-500">
+        <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 Muhammad Syukri Bin Mohamed Tahir. All rights reserved.</p>
+            <a href="#hero" class="hover:text-sand-900 dark:hover:text-sand-100 transition">Back to Top ↑</a>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE PROJECT MODAL -->
+    <div id="project-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-sand-900 border border-subtle max-w-xl w-full rounded-xl p-6 sm:p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 p-2 rounded-lg hover:bg-sand-100 dark:hover:bg-sand-800 text-sand-500">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+            <img id="modal-img" src="" alt="Preview" class="w-full h-56 object-cover rounded-lg border border-subtle mb-6">
+            <h3 id="modal-title" class="text-xl font-bold mb-2"></h3>
+            <div id="modal-tags" class="flex flex-wrap gap-1.5 mb-4"></div>
+            <p id="modal-desc" class="text-sm text-sand-600 dark:text-sand-300 leading-relaxed mb-6"></p>
+            <div class="flex items-center gap-3 pt-4 border-t border-subtle">
+                <button onclick="closeProjectModal()" class="px-4 py-2 rounded-lg text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition">Close Preview</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIVE CUSTOMIZER DRAWER -->
+    <div id="customizer-panel" class="fixed top-0 right-0 h-full w-80 bg-white dark:bg-sand-900 border-l border-subtle z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between overflow-y-auto shadow-2xl">
+        <div>
+            <div class="flex items-center justify-between pb-4 border-b border-subtle mb-6">
+                <div class="flex items-center gap-2 font-bold text-sm uppercase tracking-wider">
+                    <i data-lucide="sliders" class="w-4 h-4 text-emerald-600"></i>
+                    <span>Live Theme Settings</span>
+                </div>
+                <button id="customizer-close-btn" class="p-1.5 rounded-lg hover:bg-sand-100 dark:hover:bg-sand-800">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Color Palette Selector -->
+            <div class="mb-6">
+                <label class="block text-xs font-semibold uppercase tracking-wider text-sand-400 mb-3">Accent Theme</label>
+                <div class="grid grid-cols-4 gap-2">
+                    <button onclick="setThemeAccent('emerald')" class="h-8 rounded-md bg-emerald-600 hover:scale-105 transition" title="Emerald Green"></button>
+                    <button onclick="setThemeAccent('teal')" class="h-8 rounded-md bg-teal-600 hover:scale-105 transition" title="Warm Teal"></button>
+                    <button onclick="setThemeAccent('blue')" class="h-8 rounded-md bg-blue-600 hover:scale-105 transition" title="Classic Blue"></button>
+                    <button onclick="setThemeAccent('charcoal')" class="h-8 rounded-md bg-sand-900 dark:bg-sand-100 hover:scale-105 transition" title="Minimal Charcoal"></button>
+                </div>
+            </div>
+
+            <!-- Dynamic Input Tweaks -->
+            <div class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-semibold text-sand-400 mb-1">Display Name</label>
+                    <input type="text" id="cust-input-name" value="Muhammad Syukri Bin Mohamed Tahir" class="w-full px-3 py-2 rounded-md bg-sand-50 dark:bg-sand-800 border border-subtle">
+                </div>
+                <div>
+                    <label class="block font-semibold text-sand-400 mb-1">Job Title</label>
+                    <input type="text" id="cust-input-title" value="Marketing & Communications Executive" class="w-full px-3 py-2 rounded-md bg-sand-50 dark:bg-sand-800 border border-subtle">
+                </div>
+                <div>
+                    <label class="block font-semibold text-sand-400 mb-1">Avatar Image URL</label>
+                    <input type="text" id="cust-input-avatar" value="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" class="w-full px-3 py-2 rounded-md bg-sand-50 dark:bg-sand-800 border border-subtle">
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-6 border-t border-subtle">
+            <button onclick="applyCustomizations()" class="w-full py-2.5 rounded-md font-semibold text-xs uppercase tracking-wider text-white bg-emerald-600 shadow-sm hover:bg-emerald-700 transition">
+                Apply Updates
+            </button>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-sand-900 dark:bg-sand-100 text-white dark:text-sand-900 px-4 py-3 rounded-lg shadow-lg text-xs font-semibold flex items-center gap-2 transform translate-y-20 opacity-0 pointer-events-none">
+        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+        <span id="toast-text">Action completed successfully!</span>
+    </div>
+
+    <script>
+        const projectData = [
+            {
+                id: 1,
+                title: 'Water of Hope (Indonesia)',
+                category: 'meta',
+                image: 'https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80',
+                description: 'An impactful digital campaign created to appeal for donations for communities in Indonesia suffering from clean water shortages. Utilized Meta Ads targeted outreach and custom graphic banners.',
+                tags: ['Meta Ads', 'Graphic Design', 'Copywriting', 'Campaign Strategy']
+            },
+            {
+                id: 2,
+                title: 'Mosque Event Guidance & Community Campaign',
+                category: 'graphic',
+                image: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=800&q=80',
+                description: 'Comprehensive visual guidance system and promotional posters designed for Khalid Mosque to effectively guide congregants and streamline event logistics.',
+                tags: ['Adobe Illustrator', 'Canva', 'Print Design', 'Community Outreach']
+            },
+            {
+                id: 3,
+                title: 'Social Media Video & Engagement Series',
+                category: 'video',
+                image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80',
+                description: 'Engaging promotional short-form video series and digital flyers created for BAPA to boost awareness and audience participation in educational programs.',
+                tags: ['Video Editing', 'Adobe Photoshop', 'Shorts / Reels', 'Meta Ads']
+            }
+        ];
+
+        window.onload = function() {
+            lucide.createIcons();
+            renderProjects('all');
+            setupEventListeners();
+        };
+
+        // Render projects with category filtering
+        function renderProjects(filter) {
+            const grid = document.getElementById('projects-grid');
+            const filtered = filter === 'all' 
+                ? projectData 
+                : projectData.filter(p => p.category === filter);
+
+            grid.innerHTML = filtered.map(p => `
+                <div class="minimal-card rounded-xl overflow-hidden group flex flex-col justify-between">
+                    <div>
+                        <div class="overflow-hidden h-44 border-b border-subtle relative">
+                            <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md text-[10px] font-bold tracking-wider uppercase bg-white/90 dark:bg-sand-900/90 backdrop-blur-xs text-emerald-700 dark:text-emerald-400">
+                                ${p.category === 'meta' ? 'Meta Ads' : p.category === 'graphic' ? 'Graphic Design' : 'Video & Social'}
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-base mb-2 group-hover:text-emerald-600 transition">${p.title}</h3>
+                            <p class="text-xs text-sand-600 dark:text-sand-400 leading-relaxed mb-4 line-clamp-3">${p.description}</p>
+                            <div class="flex flex-wrap gap-1 mb-4">
+                                ${p.tags.map(t => `<span class="px-2 py-0.5 text-[10px] font-medium rounded bg-sand-100 dark:bg-sand-800 text-sand-600 dark:text-sand-300">${t}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0">
+                        <button onclick="openProjectModal(${p.id})" class="text-xs font-semibold text-emerald-600 hover:underline inline-flex items-center gap-1">
+                            <span>View Details</span>
+                            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        // Modal triggers
+        function openProjectModal(id) {
+            const p = projectData.find(item => item.id === id);
+            if (!p) return;
+
+            document.getElementById('modal-img').src = p.image;
+            document.getElementById('modal-title').textContent = p.title;
+            document.getElementById('modal-desc').textContent = p.description;
+            document.getElementById('modal-tags').innerHTML = p.tags.map(t => `<span class="px-2.5 py-1 text-xs font-medium rounded bg-sand-100 dark:bg-sand-800 text-sand-700 dark:text-sand-300">${t}</span>`).join('');
+
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            lucide.createIcons();
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function copyEmailToClipboard() {
+            const email = "mdsykr05@gmail.com";
+            const tempInput = document.createElement("input");
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            showToast("Copied mdsykr05@gmail.com to clipboard!");
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-text').textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 2500);
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            document.getElementById('contact-form').reset();
+            showToast('Thank you! Message delivered successfully.');
+        }
+
+        function setThemeAccent(theme) {
+            const root = document.documentElement;
+            if (theme === 'emerald') {
+                root.style.setProperty('--primary-accent', '#059669');
+            } else if (theme === 'teal') {
+                root.style.setProperty('--primary-accent', '#0d9488');
+            } else if (theme === 'blue') {
+                root.style.setProperty('--primary-accent', '#2563eb');
+            } else if (theme === 'charcoal') {
+                root.style.setProperty('--primary-accent', '#18181b');
+            }
+        }
+
+        function applyCustomizations() {
+            const name = document.getElementById('cust-input-name').value;
+            const title = document.getElementById('cust-input-title').value;
+            const avatar = document.getElementById('cust-input-avatar').value;
+
+            if (name) {
+                document.getElementById('display-name').textContent = name;
+                document.getElementById('nav-name').textContent = name;
+                const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+                document.getElementById('brand-avatar-mini').textContent = initials;
+            }
+            if (title) document.getElementById('display-title').children[0].textContent = title;
+            if (avatar) document.getElementById('display-avatar').src = avatar;
+
+            document.getElementById('customizer-panel').classList.add('translate-x-full');
+            showToast('Portfolio updated successfully!');
+        }
+
+        function setupEventListeners() {
+            // Theme Mode Toggle
+            document.getElementById('theme-toggle').addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+            });
+
+            // Mobile Menu
+            document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            });
+
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                });
+            });
+
+            // Project Filters
+            document.querySelectorAll('.project-filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.project-filter-btn').forEach(b => {
+                        b.classList.remove('bg-white', 'dark:bg-sand-800', 'text-sand-900', 'dark:text-sand-50', 'shadow-xs');
+                        b.classList.add('text-sand-600', 'dark:text-sand-400');
+                    });
+                    e.target.classList.add('bg-white', 'dark:bg-sand-800', 'text-sand-900', 'dark:text-sand-50', 'shadow-xs');
+                    e.target.classList.remove('text-sand-600', 'dark:text-sand-400');
+                    renderProjects(e.target.dataset.filter);
+                });
+            });
+
+            // Customizer Drawer
+            document.getElementById('customizer-open-btn').addEventListener('click', () => {
+                document.getElementById('customizer-panel').classList.remove('translate-x-full');
+            });
+            document.getElementById('customizer-close-btn').addEventListener('click', () => {
+                document.getElementById('customizer-panel').classList.add('translate-x-full');
+            });
+        }
+    </script>
+</body>
+</html>
