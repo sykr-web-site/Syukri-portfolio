@@ -528,60 +528,6 @@
         </div>
     </div>
 
-    <!-- LIVE CUSTOMIZER DRAWER -->
-    <div id="customizer-panel" class="fixed top-0 right-0 h-full w-80 bg-white dark:bg-sand-900 border-l border-subtle z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between overflow-y-auto shadow-2xl">
-        <div>
-            <div class="flex items-center justify-between pb-4 border-b border-subtle mb-6">
-                <div class="flex items-center gap-2 font-bold text-sm uppercase tracking-wider">
-                    <i data-lucide="sliders" class="w-4 h-4 text-emerald-600"></i>
-                    <span>Live Theme Settings</span>
-                </div>
-                <button id="customizer-close-btn" class="p-1.5 rounded-lg hover:bg-sand-100 dark:hover:bg-sand-800">
-                    <i data-lucide="x" class="w-4 h-4"></i>
-                </button>
-            </div>
-
-            <!-- Color Palette Selector -->
-            <div class="mb-6">
-                <label class="block text-xs font-semibold uppercase tracking-wider text-sand-400 mb-3">Accent Theme</label>
-                <div class="grid grid-cols-4 gap-2">
-                    <button onclick="setThemeAccent('emerald')" class="h-8 rounded-md bg-emerald-600 hover:scale-105 transition" title="Emerald Green"></button>
-                    <button onclick="setThemeAccent('teal')" class="h-8 rounded-md bg-teal-600 hover:scale-105 transition" title="Warm Teal"></button>
-                    <button onclick="setThemeAccent('blue')" class="h-8 rounded-md bg-blue-600 hover:scale-105 transition" title="Classic Blue"></button>
-                    <button onclick="setThemeAccent('charcoal')" class="h-8 rounded-md bg-sand-900 dark:bg-sand-100 hover:scale-105 transition" title="Minimal Charcoal"></button>
-                </div>
-            </div>
-
-            <!-- Dynamic Input Tweaks -->
-            <div class="space-y-4 text-xs">
-                <div>
-                    <label class="block font-semibold text-sand-400 mb-1">Display Name</label>
-                    <input type="text" id="cust-input-name" value="Muhammad Syukri Bin Mohamed Tahir" class="w-full px-3 py-2 rounded-md bg-sand-50 dark:bg-sand-800 border border-subtle">
-                </div>
-                <div>
-                    <label class="block font-semibold text-sand-400 mb-1">Job Title</label>
-                    <input type="text" id="cust-input-title" value="Marketing & Communications Executive" class="w-full px-3 py-2 rounded-md bg-sand-50 dark:bg-sand-800 border border-subtle">
-                </div>
-                <div>
-                    <label class="block font-semibold text-sand-400 mb-1">Avatar Image URL</label>
-                    <input type="text" id="cust-input-avatar" value="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" class="w-full px-3 py-2 rounded-md bg-sand-50 dark:bg-sand-800 border border-subtle">
-                </div>
-            </div>
-        </div>
-
-        <div class="pt-6 border-t border-subtle">
-            <button onclick="applyCustomizations()" class="w-full py-2.5 rounded-md font-semibold text-xs uppercase tracking-wider text-white bg-emerald-600 shadow-sm hover:bg-emerald-700 transition">
-                Apply Updates
-            </button>
-        </div>
-    </div>
-
-    <!-- TOAST NOTIFICATION -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-sand-900 dark:bg-sand-100 text-white dark:text-sand-900 px-4 py-3 rounded-lg shadow-lg text-xs font-semibold flex items-center gap-2 transform translate-y-20 opacity-0 pointer-events-none">
-        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
-        <span id="toast-text">Action completed successfully!</span>
-    </div>
-
     <script>
         const projectData = [
             {
@@ -700,37 +646,6 @@
             showToast('Thank you! Message delivered successfully.');
         }
 
-        function setThemeAccent(theme) {
-            const root = document.documentElement;
-            if (theme === 'emerald') {
-                root.style.setProperty('--primary-accent', '#059669');
-            } else if (theme === 'teal') {
-                root.style.setProperty('--primary-accent', '#0d9488');
-            } else if (theme === 'blue') {
-                root.style.setProperty('--primary-accent', '#2563eb');
-            } else if (theme === 'charcoal') {
-                root.style.setProperty('--primary-accent', '#18181b');
-            }
-        }
-
-        function applyCustomizations() {
-            const name = document.getElementById('cust-input-name').value;
-            const title = document.getElementById('cust-input-title').value;
-            const avatar = document.getElementById('cust-input-avatar').value;
-
-            if (name) {
-                document.getElementById('display-name').textContent = name;
-                document.getElementById('nav-name').textContent = name;
-                const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
-                document.getElementById('brand-avatar-mini').textContent = initials;
-            }
-            if (title) document.getElementById('display-title').children[0].textContent = title;
-            if (avatar) document.getElementById('display-avatar').src = avatar;
-
-            document.getElementById('customizer-panel').classList.add('translate-x-full');
-            showToast('Portfolio updated successfully!');
-        }
-
         function setupEventListeners() {
             // Theme Mode Toggle
             document.getElementById('theme-toggle').addEventListener('click', () => {
@@ -759,14 +674,6 @@
                     e.target.classList.remove('text-sand-600', 'dark:text-sand-400');
                     renderProjects(e.target.dataset.filter);
                 });
-            });
-
-            // Customizer Drawer
-            document.getElementById('customizer-open-btn').addEventListener('click', () => {
-                document.getElementById('customizer-panel').classList.remove('translate-x-full');
-            });
-            document.getElementById('customizer-close-btn').addEventListener('click', () => {
-                document.getElementById('customizer-panel').classList.add('translate-x-full');
             });
         }
     </script>
